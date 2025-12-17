@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/item_container"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="?android:attr/selectableItemBackground">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/tvTitulo"
+    <data>
+        <variable
+            name="libro"
+            type="com.example.examenparcial2.data.model.Libro" />
+
+        <variable
+            name="esFavorito"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Título del Libro"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@{esFavorito ? @color/color_destacado : @color/color_transparente}">
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{libro.titulo}"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/tvAutor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Autor del Libro"
-        android:textAppearance="?attr/textAppearanceListItemSecondary"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tvAutor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{libro.autor}"
+            android:textAppearance="?attr/textAppearanceListItemSecondary"
+            android:textSize="14sp" />
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

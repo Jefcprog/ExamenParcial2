@@ -1,11 +1,12 @@
 package com.example.examenparcial2.ui.detail
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.examenparcial2.R
 import com.example.examenparcial2.data.model.Libro
 import com.example.examenparcial2.databinding.ActivityDetailBinding
 
@@ -18,8 +19,9 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
+        binding.lifecycleOwner = this // Buena práctica
 
         libro = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra("EXTRA_LIBRO", Libro::class.java)
@@ -28,17 +30,11 @@ class DetailActivity : AppCompatActivity() {
             intent.getParcelableExtra("EXTRA_LIBRO")
         }
 
-        libro?.let {
-            mostrarDatos(it)
-            configurarBoton(it)
-        }
-    }
+        libro?.let { libroActual ->
+            binding.libro = libroActual
 
-    @SuppressLint("SetTextI18n")
-    private fun mostrarDatos(libro: Libro) {
-        binding.tvDetalleTitulo.text = libro.titulo
-        binding.tvDetalleAutor.text = libro.autor
-        binding.tvDetalleAnio.text = "Año: ${libro.anio}"
+            configurarBoton(libroActual)
+        }
     }
 
     private fun configurarBoton(libro: Libro) {

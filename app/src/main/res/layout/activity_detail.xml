@@ -1,46 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    tools:context=".ui.detail.DetailActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tvDetalleTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Título"
-        android:textSize="28sp"
-        android:textStyle="bold" />
+    <data>
+        <variable
+            name="libro"
+            type="com.example.examenparcial2.data.model.Libro" />
+    </data>
 
-    <TextView
-        android:id="@+id/tvDetalleAutor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Autor"
-        android:textSize="20sp"
-        android:layout_marginTop="8dp" />
-
-    <TextView
-        android:id="@+id/tvDetalleAnio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Año"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp" />
-
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp"
+        tools:context=".ui.detail.DetailActivity">
 
-    <Button
-        android:id="@+id/btnGuardarPreferencias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar en preferencias" />
+        <TextView
+            android:id="@+id/tvDetalleTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{libro.titulo}"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            tools:text="Título del Libro" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvDetalleAutor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{libro.autor}"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            tools:text="Autor del Libro" />
+
+        <TextView
+            android:id="@+id/tvDetalleAnio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Año: ` + libro.anio}"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            tools:text="Año: 2024" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnGuardarPreferencias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar en preferencias" />
+
+    </LinearLayout>
+</layout>

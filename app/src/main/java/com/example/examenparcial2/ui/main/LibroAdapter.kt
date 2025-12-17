@@ -1,10 +1,9 @@
 package com.example.examenparcial2.ui.main
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.examenparcial2.R
 import com.example.examenparcial2.data.model.Libro
 import com.example.examenparcial2.databinding.ItemLibroBinding
 
@@ -25,22 +24,15 @@ class LibroAdapter(
     inner class LibroViewHolder(val binding: ItemLibroBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(libro: Libro) {
-            binding.tvTitulo.text = libro.titulo
-            binding.tvAutor.text = libro.autor
+            binding.libro = libro
 
-            if (libro.titulo == libroFavoritoTitulo) {
-                binding.itemContainer.setBackgroundColor(
-                    ContextCompat.getColor(binding.root.context, R.color.color_destacado)
-                )
-            } else {
-                binding.itemContainer.setBackgroundColor(
-                    ContextCompat.getColor(binding.root.context, R.color.color_transparente)
-                )
-            }
+            binding.esFavorito = (libro.titulo == libroFavoritoTitulo)
 
             binding.root.setOnClickListener {
                 onClick(libro)
             }
+
+            binding.executePendingBindings()
         }
     }
 
